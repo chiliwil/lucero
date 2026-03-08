@@ -65,8 +65,6 @@ font-size:40px;
 margin-bottom:20px;
 }
 
-/* botón */
-
 button{
 padding:16px 40px;
 font-size:18px;
@@ -116,6 +114,16 @@ font-size:16px;
 color:#ffd6e0;
 }
 
+/* mensaje final */
+
+.finalMensaje{
+margin-top:30px;
+font-size:22px;
+opacity:0;
+transition:2s;
+color:#ffd6e0;
+}
+
 /* rosas */
 
 .rose{
@@ -124,7 +132,7 @@ top:-10vh;
 font-size:26px;
 animation:fall 9s linear;
 pointer-events:none;
-z-index:99
+z-index:9999;
 }
 
 @keyframes fall{
@@ -132,14 +140,13 @@ z-index:99
 transform:translateY(-10vh) rotate(0deg);
 opacity:1;
 }
-
 100%{
 transform:translateY(120vh) rotate(360deg);
 opacity:0;
 }
 }
 
-/* RESPONSIVE */
+/* responsive */
 
 @media(max-width:600px){
 
@@ -188,6 +195,10 @@ padding:14px 30px;
 
 <div id="contador"></div>
 
+<div id="final" class="finalMensaje">
+✨ Espero haberte sacado una sonrisa 😊
+</div>
+
 </div>
 
 <script>
@@ -210,7 +221,7 @@ document.body.appendChild(star)
 
 }
 
-/* abrir página */
+/* abrir */
 
 function abrir(){
 
@@ -220,7 +231,7 @@ document.getElementById("contenido").style.display="block"
 
 document.getElementById("musica").play()
 
-iniciarRosas()   // 🌹 empiezan las rosas
+iniciarRosas()
 
 escribir()
 
@@ -258,7 +269,11 @@ cont.innerHTML+=texto.charAt(i)
 
 i++
 
-setTimeout(type,35)
+setTimeout(type,65)
+
+}else{
+
+explosionRosas()
 
 }
 
@@ -295,6 +310,14 @@ function iniciarRosas(){
 
 lluvia=setInterval(()=>{
 
+crearRosa()
+
+},900)
+
+}
+
+function crearRosa(){
+
 let r=document.createElement("div")
 
 r.className="rose"
@@ -311,7 +334,25 @@ r.remove()
 
 },9000)
 
-},900)
+}
+
+/* explosión final */
+
+function explosionRosas(){
+
+for(let j=0;j<40;j++){
+
+crearRosa()
+
+}
+
+setTimeout(()=>{
+
+let final=document.getElementById("final")
+
+final.style.opacity="1"
+
+},2000)
 
 }
 
