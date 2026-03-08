@@ -2,302 +2,309 @@
 <html lang="es">
 
 <head>
-    <meta property="og:title" content="Para Lucero 💖">
-    <meta property="og:description" content="Tengo algo especial para ti ✨">
-    <meta property="og:image" content="https://beamish-parfait-141c97.netlify.app/preview.png">
-    <meta property="og:type" content="website">
-    <title>Para Lucero 💖</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Segoe UI;
-            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
-            overflow: hidden;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
 
-        /* estrellas */
+<meta property="og:title" content="Lucero ✨">
+<meta property="og:description" content="Hay algo que quiero mostrarte...">
+<meta property="og:image" content="https://beamish-parfait-141c97.netlify.app/preview.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beamish-parfait-141c97.netlify.app">
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            animation: twinkle 3s infinite;
-        }
+<title>Para Lucero ✨</title>
 
-        @keyframes twinkle {
-            0% {
-                opacity: 0
-            }
+<style>
 
-            50% {
-                opacity: 1
-            }
+body{
+margin:0;
+font-family:Segoe UI;
+background:radial-gradient(circle,#0f2027,#203a43,#2c5364);
+overflow:hidden;
+color:white;
+text-align:center;
+}
 
-            100% {
-                opacity: 0
-            }
-        }
+/* estrellas */
 
-        /* pantalla inicio */
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 3s infinite;
+}
 
-        #inicio {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        }
+@keyframes twinkle{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
 
-        .rosa {
-            font-size: 80px;
-            animation: flotar 3s infinite ease-in-out;
-        }
+/* pantalla inicio */
 
-        @keyframes flotar {
-            0% {
-                transform: translateY(0)
-            }
+#inicio{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+transition:1s;
+}
 
-            50% {
-                transform: translateY(-10px)
-            }
+.rosa{
+font-size:90px;
+animation:flotar 3s infinite ease-in-out;
+}
 
-            100% {
-                transform: translateY(0)
-            }
-        }
+@keyframes flotar{
+0%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0)}
+}
 
-        button {
-            margin-top: 20px;
-            padding: 15px 40px;
-            font-size: 18px;
-            border: none;
-            border-radius: 40px;
-            background: white;
-            color: #ff4d6d;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            transition: 0.3s;
-        }
+button{
+margin-top:20px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
 
-        button:hover {
-            transform: scale(1.1);
-        }
+button:hover{
+transform:scale(1.1);
+}
 
-        /* contenido */
+/* contenido */
 
-        #contenido {
-            display: none;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 5;
-        }
+#contenido{
+display:none;
+padding:40px 20px;
+position:relative;
+z-index:5;
+}
 
-        /* nombre */
+/* nombre */
 
-        .nombre {
-            font-size: 65px;
-            color: #ff7eb3;
-            text-shadow:
-                0 0 10px #ff7eb3,
-                0 0 20px #ff7eb3,
-                0 0 40px #ff7eb3;
-            animation: glow 2s infinite alternate;
-        }
+.nombre{
+font-size:70px;
+color:#ff7eb3;
+opacity:0;
+transform:scale(0.6);
+animation:aparecer 2s forwards;
+text-shadow:
+0 0 10px #ff7eb3,
+0 0 20px #ff7eb3,
+0 0 40px #ff7eb3;
+}
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #ff7eb3
-            }
+@keyframes aparecer{
+0%{opacity:0;transform:scale(0.5)}
+100%{opacity:1;transform:scale(1)}
+}
 
-            to {
-                text-shadow: 0 0 60px #ff7eb3
-            }
-        }
+/* mensaje */
 
-        /* mensaje */
+#mensaje{
+margin-top:20px;
+font-size:20px;
+max-width:520px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.8;
+opacity:0;
+animation:fade 2s forwards;
+animation-delay:2s;
+}
 
-        #mensaje {
-            margin-top: 20px;
-            font-size: 20px;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
+@keyframes fade{
+to{opacity:1}
+}
 
-        /* contador */
+/* contador */
 
-        #contador {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffd6e0;
-        }
+#contador{
+margin-top:20px;
+font-size:18px;
+color:#ffd6e0;
+opacity:0;
+animation:fade 2s forwards;
+animation-delay:4s;
+}
 
-        /* rosas cayendo */
+/* rosas */
 
-        .rose {
-            position: absolute;
-            font-size: 26px;
-            animation: fall 8s linear infinite;
-            opacity: 0.7;
-        }
+.rose{
+position:absolute;
+font-size:26px;
+animation:fall 10s linear infinite;
+opacity:0.7;
+}
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0)
-            }
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
 
-            100% {
-                transform: translateY(110vh) rotate(360deg)
-            }
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
-    <audio id="musica" loop>
-        <source src="musica_lucero.mp3" type="audio/mpeg">
-    </audio>
+<audio id="musica" loop>
+<source src="musica_lucero.mp3" type="audio/mpeg">
+</audio>
 
-    <div id="inicio">
+<div id="inicio">
 
-        <div class="rosa">🌹</div>
-        <h1>Tengo algo para ti</h1>
-        <p>Hoy quiero mostrarte algo especial...</p>
+<div class="rosa">🌹</div>
 
-        <button onclick="abrir()">Toca aquí Lucero ✨</button>
+<h1>Tengo algo para ti</h1>
 
-    </div>
+<p>Solo toca el botón...</p>
 
-    <div id="contenido">
+<button onclick="abrir()">Toca aquí Lucero ✨</button>
 
-        <div class="nombre">Lucero ✨</div>
+</div>
 
-        <div id="mensaje"></div>
+<div id="contenido">
 
-        <div id="contador"></div>
+<div class="nombre">Lucero ✨</div>
 
-    </div>
+<div id="mensaje"></div>
 
-    <script>
+<div id="contador"></div>
 
-        /* estrellas */
+</div>
 
-        for (let i = 0; i < 200; i++) {
-            let star = document.createElement("div")
-            star.className = "star"
-            star.style.left = Math.random() * 100 + "vw"
-            star.style.top = Math.random() * 100 + "vh"
-            star.style.animationDuration = (2 + Math.random() * 3) + "s"
-            document.body.appendChild(star)
-        }
+<script>
 
-        /* abrir sorpresa */
+/* estrellas */
 
-        function abrir() {
+for(let i=0;i<200;i++){
 
-            document.getElementById("inicio").style.display = "none"
-            document.getElementById("contenido").style.display = "block"
+let star=document.createElement("div")
 
-            document.getElementById("musica").play()
+star.className="star"
 
-            escribir()
+star.style.left=Math.random()*100+"vw"
 
-        }
+star.style.top=Math.random()*100+"vh"
 
-        /* mensaje */
+star.style.animationDuration=(2+Math.random()*3)+"s"
 
-        let texto = `Hoy celebramos el Día de la Mujer...
+document.body.appendChild(star)
 
-pero también celebramos algo aún más especial.
+}
 
-Celebramos tu sonrisa,
-tu fuerza
-y la luz que llevas dentro.
+/* abrir */
+
+function abrir(){
+
+document.getElementById("inicio").style.opacity="0"
+
+setTimeout(()=>{
+
+document.getElementById("inicio").style.display="none"
+
+document.getElementById("contenido").style.display="block"
+
+document.getElementById("musica").play()
+
+escribir()
+
+},800)
+
+}
+
+/* mensaje */
+
+let texto=`Hoy es el Día de la Mujer...
+
+y pensé que era un buen momento
+para decir algo que quizá
+no siempre se dice.
 
 Lucero...
 
-tu nombre brilla como una estrella
-y tu presencia ilumina todo a tu alrededor.
+tu forma de ser,
+tu energía
+y tu sonrisa
 
-Que nunca te falten sueños
-ni motivos para sonreír.
+hacen que todo alrededor
+se sienta un poco más bonito.
 
-Porque el mundo es mucho más bonito
-cuando alguien como tú existe. 💖`
+Solo quería que lo supieras. ✨`
 
-        let i = 0
+let i=0
 
-        function escribir() {
+function escribir(){
 
-            let cont = document.getElementById("mensaje")
+let cont=document.getElementById("mensaje")
 
-            function type() {
+function type(){
 
-                if (i < texto.length) {
+if(i<texto.length){
 
-                    cont.innerHTML += texto.charAt(i)
+cont.innerHTML+=texto.charAt(i)
 
-                    i++
+i++
 
-                    setTimeout(type, 40)
+setTimeout(type,35)
 
-                }
+}
 
-            }
+}
 
-            type()
+type()
 
-        }
+}
 
-        /* contador */
+/* contador */
 
-        let inicio = new Date("2023-01-01")
+let inicio=new Date("2023-01-01")
 
-        function actualizar() {
+function actualizar(){
 
-            let ahora = new Date()
+let ahora=new Date()
 
-            let diff = ahora - inicio
+let diff=ahora-inicio
 
-            let dias = Math.floor(diff / (1000 * 60 * 60 * 24))
+let dias=Math.floor(diff/(1000*60*60*24))
 
-            document.getElementById("contador").innerHTML =
-                "✨ Han pasado " + dias + " días desde que apareciste en mi vida"
+document.getElementById("contador").innerHTML=
+"✨ Han pasado "+dias+" días desde que apareciste en mi vida"
 
-        }
+}
 
-        setInterval(actualizar, 1000)
+setInterval(actualizar,1000)
 
-        /* rosas cayendo */
+/* rosas */
 
-        setInterval(() => {
+setInterval(()=>{
 
-            let r = document.createElement("div")
+let r=document.createElement("div")
 
-            r.className = "rose"
+r.className="rose"
 
-            r.innerHTML = "🌹"
+r.innerHTML="🌹"
 
-            r.style.left = Math.random() * 100 + "vw"
+r.style.left=Math.random()*100+"vw"
 
-            document.body.appendChild(r)
+document.body.appendChild(r)
 
-            setTimeout(() => r.remove(), 8000)
+setTimeout(()=>r.remove(),10000)
 
-        }, 2000)
+},2500)
 
-    </script>
+</script>
 
 </body>
-
 </html>
