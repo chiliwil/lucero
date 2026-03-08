@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta property="og:title" content="Para Lucero 💖">
+    <meta property="og:description" content="Tengo algo especial para ti ✨">
+    <meta property="og:image" content="https://tu-link.netlify.app/preview.png">
+    <meta property="og:type" content="website">
+    <title>Para Lucero 💖</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Segoe UI;
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        /* estrellas */
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0
+            }
+
+            50% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        /* pantalla inicio */
+
+        #inicio {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        }
+
+        .rosa {
+            font-size: 80px;
+            animation: flotar 3s infinite ease-in-out;
+        }
+
+        @keyframes flotar {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 40px;
+            background: white;
+            color: #ff4d6d;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* contenido */
+
+        #contenido {
+            display: none;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* nombre */
+
+        .nombre {
+            font-size: 65px;
+            color: #ff7eb3;
+            text-shadow:
+                0 0 10px #ff7eb3,
+                0 0 20px #ff7eb3,
+                0 0 40px #ff7eb3;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff7eb3
+            }
+
+            to {
+                text-shadow: 0 0 60px #ff7eb3
+            }
+        }
+
+        /* mensaje */
+
+        #mensaje {
+            margin-top: 20px;
+            font-size: 20px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* contador */
+
+        #contador {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffd6e0;
+        }
+
+        /* rosas cayendo */
+
+        .rose {
+            position: absolute;
+            font-size: 26px;
+            animation: fall 8s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0)
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="musica" loop>
+        <source src="musica_lucero.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="inicio">
+
+        <div class="rosa">🌹</div>
+        <h1>Tengo algo para ti</h1>
+        <p>Hoy quiero mostrarte algo especial...</p>
+
+        <button onclick="abrir()">Toca aquí Lucero ✨</button>
+
+    </div>
+
+    <div id="contenido">
+
+        <div class="nombre">Lucero ✨</div>
+
+        <div id="mensaje"></div>
+
+        <div id="contador"></div>
+
+    </div>
+
+    <script>
+
+        /* estrellas */
+
+        for (let i = 0; i < 200; i++) {
+            let star = document.createElement("div")
+            star.className = "star"
+            star.style.left = Math.random() * 100 + "vw"
+            star.style.top = Math.random() * 100 + "vh"
+            star.style.animationDuration = (2 + Math.random() * 3) + "s"
+            document.body.appendChild(star)
+        }
+
+        /* abrir sorpresa */
+
+        function abrir() {
+
+            document.getElementById("inicio").style.display = "none"
+            document.getElementById("contenido").style.display = "block"
+
+            document.getElementById("musica").play()
+
+            escribir()
+
+        }
+
+        /* mensaje */
+
+        let texto = `Hoy celebramos el Día de la Mujer...
+
+pero también celebramos algo aún más especial.
+
+Celebramos tu sonrisa,
+tu fuerza
+y la luz que llevas dentro.
+
+Lucero...
+
+tu nombre brilla como una estrella
+y tu presencia ilumina todo a tu alrededor.
+
+Que nunca te falten sueños
+ni motivos para sonreír.
+
+Porque el mundo es mucho más bonito
+cuando alguien como tú existe. 💖`
+
+        let i = 0
+
+        function escribir() {
+
+            let cont = document.getElementById("mensaje")
+
+            function type() {
+
+                if (i < texto.length) {
+
+                    cont.innerHTML += texto.charAt(i)
+
+                    i++
+
+                    setTimeout(type, 40)
+
+                }
+
+            }
+
+            type()
+
+        }
+
+        /* contador */
+
+        let inicio = new Date("2023-01-01")
+
+        function actualizar() {
+
+            let ahora = new Date()
+
+            let diff = ahora - inicio
+
+            let dias = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+            document.getElementById("contador").innerHTML =
+                "✨ Han pasado " + dias + " días desde que apareciste en mi vida"
+
+        }
+
+        setInterval(actualizar, 1000)
+
+        /* rosas cayendo */
+
+        setInterval(() => {
+
+            let r = document.createElement("div")
+
+            r.className = "rose"
+
+            r.innerHTML = "🌹"
+
+            r.style.left = Math.random() * 100 + "vw"
+
+            document.body.appendChild(r)
+
+            setTimeout(() => r.remove(), 8000)
+
+        }, 2000)
+
+    </script>
+
+</body>
+
+</html>
