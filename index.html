@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta property="og:title" content="Lucero ✨">
 <meta property="og:description" content="Hay algo que quiero mostrarte...">
@@ -18,7 +19,7 @@
 body{
 margin:0;
 font-family:Segoe UI;
-background:radial-gradient(circle,#0f2027,#203a43,#2c5364);
+background:#000;
 overflow:hidden;
 color:white;
 text-align:center;
@@ -50,24 +51,24 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
-transition:1s;
+
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.8)),
+url("preview.png");
+
+background-size:cover;
+background-position:center;
 }
 
-.rosa{
-font-size:90px;
-animation:flotar 3s infinite ease-in-out;
+h1{
+font-size:40px;
+margin-bottom:20px;
 }
 
-@keyframes flotar{
-0%{transform:translateY(0)}
-50%{transform:translateY(-12px)}
-100%{transform:translateY(0)}
-}
+/* botón */
 
 button{
-margin-top:20px;
-padding:15px 40px;
+padding:16px 40px;
 font-size:18px;
 border:none;
 border-radius:40px;
@@ -75,11 +76,6 @@ background:white;
 color:#ff4d6d;
 cursor:pointer;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
 }
 
 /* contenido */
@@ -87,70 +83,84 @@ transform:scale(1.1);
 #contenido{
 display:none;
 padding:40px 20px;
-position:relative;
-z-index:5;
+height:100vh;
+background:radial-gradient(circle,#0f2027,#203a43,#2c5364);
 }
 
 /* nombre */
 
 .nombre{
-font-size:70px;
+font-size:60px;
 color:#ff7eb3;
-opacity:0;
-transform:scale(0.6);
-animation:aparecer 2s forwards;
 text-shadow:
 0 0 10px #ff7eb3,
 0 0 20px #ff7eb3,
 0 0 40px #ff7eb3;
-}
-
-@keyframes aparecer{
-0%{opacity:0;transform:scale(0.5)}
-100%{opacity:1;transform:scale(1)}
+margin-bottom:20px;
 }
 
 /* mensaje */
 
 #mensaje{
-margin-top:20px;
 font-size:20px;
-max-width:520px;
-margin-left:auto;
-margin-right:auto;
+max-width:600px;
+margin:auto;
 line-height:1.8;
-opacity:0;
-animation:fade 2s forwards;
-animation-delay:2s;
-}
-
-@keyframes fade{
-to{opacity:1}
 }
 
 /* contador */
 
 #contador{
 margin-top:20px;
-font-size:18px;
+font-size:16px;
 color:#ffd6e0;
-opacity:0;
-animation:fade 2s forwards;
-animation-delay:4s;
 }
 
 /* rosas */
 
 .rose{
-position:absolute;
+position:fixed;
+top:-10vh;
 font-size:26px;
-animation:fall 10s linear infinite;
-opacity:0.7;
+animation:fall 9s linear;
+pointer-events:none;
+z-index:99
 }
 
 @keyframes fall{
-0%{transform:translateY(-10vh) rotate(0)}
-100%{transform:translateY(110vh) rotate(360deg)}
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+.nombre{
+font-size:40px;
+}
+
+#mensaje{
+font-size:18px;
+padding:0 10px;
+}
+
+h1{
+font-size:28px;
+}
+
+button{
+font-size:16px;
+padding:14px 30px;
+}
+
 }
 
 </style>
@@ -164,11 +174,7 @@ opacity:0.7;
 
 <div id="inicio">
 
-<div class="rosa">🌹</div>
-
 <h1>Tengo algo para ti</h1>
-
-<p>Solo toca el botón...</p>
 
 <button onclick="abrir()">Toca aquí Lucero ✨</button>
 
@@ -188,7 +194,7 @@ opacity:0.7;
 
 /* estrellas */
 
-for(let i=0;i<200;i++){
+for(let i=0;i<150;i++){
 
 let star=document.createElement("div")
 
@@ -204,13 +210,9 @@ document.body.appendChild(star)
 
 }
 
-/* abrir */
+/* abrir página */
 
 function abrir(){
-
-document.getElementById("inicio").style.opacity="0"
-
-setTimeout(()=>{
 
 document.getElementById("inicio").style.display="none"
 
@@ -218,19 +220,18 @@ document.getElementById("contenido").style.display="block"
 
 document.getElementById("musica").play()
 
-escribir()
+iniciarRosas()   // 🌹 empiezan las rosas
 
-},800)
+escribir()
 
 }
 
-/* mensaje */
+/* texto */
 
 let texto=`Hoy es el Día de la Mujer...
 
 y pensé que era un buen momento
-para decir algo que quizá
-no siempre se dice.
+para decir algo.
 
 Lucero...
 
@@ -238,7 +239,7 @@ tu forma de ser,
 tu energía
 y tu sonrisa
 
-hacen que todo alrededor
+hacen que todo
 se sienta un poco más bonito.
 
 Solo quería que lo supieras. ✨`
@@ -286,9 +287,13 @@ document.getElementById("contador").innerHTML=
 
 setInterval(actualizar,1000)
 
-/* rosas */
+/* lluvia de rosas */
 
-setInterval(()=>{
+let lluvia
+
+function iniciarRosas(){
+
+lluvia=setInterval(()=>{
 
 let r=document.createElement("div")
 
@@ -296,13 +301,19 @@ r.className="rose"
 
 r.innerHTML="🌹"
 
-r.style.left=Math.random()*100+"vw"
+r.style.left=Math.random()*100+"%"
 
 document.body.appendChild(r)
 
-setTimeout(()=>r.remove(),10000)
+setTimeout(()=>{
 
-},2500)
+r.remove()
+
+},9000)
+
+},900)
+
+}
 
 </script>
 
